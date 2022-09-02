@@ -1,9 +1,12 @@
-name: Release
+name: Github Release
 
 on:
   push:
     tags:
       - "v*.*.*"
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -25,7 +28,7 @@ jobs:
         virtualenvs-create: true
         virtualenvs-in-project: true
 
-    - name: Poetry build
+    - name: Build package
       run: poetry build
 
       - name: Release

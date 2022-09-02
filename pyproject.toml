@@ -11,7 +11,7 @@ keywords = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 Faker = "^14.2.0"
 
 [tool.poetry.dev-dependencies]
