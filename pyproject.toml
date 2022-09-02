@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "faker-crypto"
-version = "0.1.0"
+version = "0.1.2"
 description = "faker_crypto is a Faker provider for crytoaddreses."
 authors = ["Karambir Singh Nain <me@karambir.in>"]
 license = "MIT"
