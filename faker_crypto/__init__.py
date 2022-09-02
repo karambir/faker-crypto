@@ -20,6 +20,15 @@ class CryptoAddress(BaseProvider):
 
         return addr_prefix + addr_suffix
 
+    def bitcoincash_address(self) -> str:
+        suffix_length = self.random_int(min=24, max=33)  # Atleast one char less for prefix
+        addr_prefix_space = ["q", "bitcoincash:q"]
+
+        addr_prefix = self.random_element(elements=addr_prefix_space)
+        addr_suffix = "".join(self.random_elements(list(self.coin_letters_integers), suffix_length))
+
+        return addr_prefix + addr_suffix
+
     def litecoin_address(self) -> str:
         addr_length = self.random_int(min=26, max=33)
         addr_prefix_space = ["L", "M", "3"]
