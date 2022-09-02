@@ -9,23 +9,29 @@ from faker.providers import BaseProvider
 class CryptoAddress(BaseProvider):
     coin_letters_integers = "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"
 
-    def bitcoin_address(self) -> str:
-        address_length = self.random_int(min=25, max=34)
-        address = ["1", "3"]
+    def bitcoin_address(self, include_bench32: bool = False) -> str:
+        suffix_length = self.random_int(min=24, max=33)  # Atleast one char less for prefix
+        addr_prefix_space = ["1", "3"]
+        if include_bench32:
+            addr_prefix_space += ["bc1"]
 
-        address += self.random_elements(elements=list(self.coin_letters_integers), length=address_length - 2)
-        return "".join(address)
+        addr_prefix = self.random_element(elements=addr_prefix_space)
+        addr_suffix = "".join(self.random_elements(list(self.coin_letters_integers), suffix_length))
+
+        return addr_prefix + addr_suffix
 
     def litecoin_address(self) -> str:
-        address_length = self.random_int(min=26, max=33)
-        address = ["L", "M", "3"]
+        addr_length = self.random_int(min=26, max=33)
+        addr_prefix_space = ["L", "M", "3"]
 
-        address += self.random_elements(elements=list(self.coin_letters_integers), length=address_length - 3)
-        return "".join(address)
+        addr_prefix = self.random_element(elements=addr_prefix_space)
+        addr_suffix = "".join(self.random_elements(elements=list(self.coin_letters_integers), length=addr_length - 1))
+
+        return addr_prefix + addr_suffix
 
     def ethereum_address(self) -> str:
-        address_length = 40
+        addr_length = 40
         address = ["0", "x"]
 
-        address += self.random_elements(elements=list(hexdigits), length=address_length - 2)
+        address += self.random_elements(elements=list(hexdigits), length=addr_length - 2)
         return "".join(address).lower()

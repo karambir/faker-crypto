@@ -24,9 +24,20 @@ def test_random_bitcoin_address(fake):
         assert 25 <= len(address) <= 34
 
 
+def test_bench32_bitcoin_address(fake):
+    for _ in range(100):
+        address = fake.bitcoin_address(include_bench32=True)
+        assert 25 <= len(address) <= 36
+
+
 def test_bitcoin_address_startwith(fake):
     address = fake.bitcoin_address()
-    assert address[:2] == "13"
+    assert address[0] in ["1", "3"]
+
+
+def test_bench32_bitcoin_address_startwith(fake):
+    address = fake.bitcoin_address(include_bench32=True)
+    assert address[:3] == "bc1" or address[0] in ["1", "3"]
 
 
 def test_random_litecoin_address(fake):
@@ -37,7 +48,7 @@ def test_random_litecoin_address(fake):
 
 def test_litecoin_address_startwith(fake):
     address = fake.litecoin_address()
-    assert address[:3] == "LM3"
+    assert address[0] in ["L", "M", "3"]
 
 
 def test_random_ethereum_address(fake):
