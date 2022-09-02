@@ -1,6 +1,6 @@
 # faker_crypto
 
-__Version:__ 0.1.0
+__Version:__ 0.1.1
 
 faker_crypto is a Faker provider for crytoaddreses.
 
