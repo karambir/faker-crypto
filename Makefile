@@ -34,7 +34,8 @@ test: ## run pytest with coverage
 build: install lint test ## run `poetry build` to build source distribution and wheel
 	poetry build
 
-bumpversion: build ## bumpversion
+release-patch: build ## Make patch release
 	poetry run bump2version --verbose patch
-	git push
-	git push --tags 
+
+release-minor: build ## Make minor release
+	poetry run bump2version --verbose minor
