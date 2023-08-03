@@ -1,6 +1,6 @@
 # faker-crypto
 
-__Version:__ 0.2.1
+__Version:__ 0.2.2
 
 faker-crypto is a Faker provider for Cryto Addreses.
 
