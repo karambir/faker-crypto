@@ -1,8 +1,8 @@
-# faker_crypto
+# faker-crypto
 
 __Version:__ 0.2.0
 
-faker_crypto is a Faker provider for Cryto Addreses.
+faker-crypto is a Faker provider for Cryto Addreses.
 
 Following crypto addresses are supported:
 
