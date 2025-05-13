@@ -17,7 +17,7 @@ Following crypto addresses are supported:
 Install with pip:
 
 ```bash
-pip install faker-cypto
+pip install faker-crypto
 ```
 
 ## Usage
