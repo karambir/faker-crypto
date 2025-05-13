@@ -1,5 +1,9 @@
 # faker-crypto
 
+[![CI](https://github.com/karambir/faker-crypto/actions/workflows/ci.yml/badge.svg)](https://github.com/karambir/faker-crypto/actions/workflows/ci.yml)
+[![PyPI Version](https://img.shields.io/pypi/v/faker-crypto.svg)](https://pypi.org/project/faker-crypto/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/faker-crypto.svg)](https://pypi.org/project/faker-crypto/)
+
 faker-crypto is a Faker provider for Cryto Addreses.
 
 Following crypto addresses are supported:
@@ -42,7 +46,6 @@ fake.binance_smart_chain_address()
 fake.polygon_address()
 # '0x32f065b1fe349fcaa29bfdfa5e6aae25a53203'
 ```
-
 
 ## Development
 
