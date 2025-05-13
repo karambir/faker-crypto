@@ -1,6 +1,6 @@
 [project]
 name = "faker-crypto"
-version = "0.2.2"
+version = "0.3.0"
 description = "faker-crypto is a Faker provider for cryto addreses."
 authors = [
     {name = "Karambir Singh Nain", email = "hello@karambir.in"}
