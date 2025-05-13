@@ -13,10 +13,20 @@ Following crypto addresses are supported:
 - Litecoin
 - Dogecoin
 - Ethereum
+- Polygon
+- Binance Smart Chain
+- Cronos
+- Optimism
+- Arbitrum
+- Avalanche C-Chain
 - Ripple
 - Tron
-- Binance Smart Chain
-- Polygon
+- Polkadot
+- Stellar
+- Solana
+- Zilliqa
+- Cardano
+- Hedera
 
 ## Installation
 
@@ -47,8 +57,12 @@ fake.ripple_address()
 # 'rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh'
 fake.tron_address()
 # 'TNPeeaaFB7K9cmo4uQpcU32zGK8G1NYqeL'
-fake.binance_smart_chain_address()
-# '0xceeea432e1eb0fdcbd7ffbe2e7fefa6ccb78dd'
+fake.stellar_address()
+# 'GC7OHFPWPSWXL4HMN6TXAG54MTZSMJIASWHO6KVRQNHNCXEAHWDSGGC3'
+fake.solana_address()
+# '7EcDhSYGxXyscszYEp35KHN8vvw3svAuLKTzXwCFLtV'
+fake.zilliqa_address()
+# 'zil102n74869xnvdwq3yh8p0k9jjgtejruft268tg8'
 fake.polygon_address()
 # '0x32f065b1fe349fcaa29bfdfa5e6aae25a53203'
 ```
