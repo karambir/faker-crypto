@@ -80,3 +80,43 @@ def test_random_ethereum_address(fake):
 def test_ethereum_address_startwith(fake):
     address = fake.ethereum_address()
     assert address[:2] == "0x"
+
+
+def test_random_ripple_address(fake):
+    for _ in range(100):
+        address = fake.ripple_address()
+        assert 25 <= len(address) <= 35
+
+
+def test_ripple_address_startwith(fake):
+    address = fake.ripple_address()
+    assert address[0] == "r"
+
+
+def test_ripple_address_chars(fake):
+    # Ensure no excluded characters (0, O, I, l) are present
+    excluded_chars = ["0", "O", "I", "l"]
+    for _ in range(100):
+        address = fake.ripple_address()
+        for char in excluded_chars:
+            assert char not in address[1:]  # Check suffix only
+
+
+def test_random_tron_address(fake):
+    for _ in range(100):
+        address = fake.tron_address()
+        assert len(address) == 34
+
+
+def test_tron_address_startwith(fake):
+    address = fake.tron_address()
+    assert address[0] == "T"
+
+
+def test_tron_address_chars(fake):
+    # Ensure only Base58 characters are present in the suffix
+    base58_chars = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+    for _ in range(100):
+        address = fake.tron_address()
+        for char_in_addr in address[1:]:
+            assert char_in_addr in base58_chars

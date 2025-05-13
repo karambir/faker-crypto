@@ -59,3 +59,22 @@ class CryptoAddress(BaseProvider):
 
     def binance_smart_chain_address(self) -> str:
         return self._ethereum_like_address()
+
+    def ripple_address(self) -> str:
+        # Ripple addresses start with 'r' and are 25-35 characters long.
+        # They use alphanumeric characters excluding "0", "O", "I", "l".
+        ripple_chars = "rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz"
+        suffix_length = self.random_int(min=24, max=34)
+        addr_prefix = "r"
+        addr_suffix = "".join(self.random_elements(list(ripple_chars), suffix_length))
+        return addr_prefix + addr_suffix
+
+    def tron_address(self) -> str:
+        # Tron addresses start with 'T' and are typically 34 characters long.
+        # They use Base58 characters.
+        # The standard Base58 alphabet does not include 0, O, I, l.
+        base58_chars = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+        suffix_length = 33
+        addr_prefix = "T"
+        addr_suffix = "".join(self.random_elements(list(base58_chars), suffix_length))
+        return addr_prefix + addr_suffix

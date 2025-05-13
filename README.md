@@ -13,6 +13,8 @@ Following crypto addresses are supported:
 - Litecoin
 - Dogecoin
 - Ethereum
+- Ripple
+- Tron
 - Binance Smart Chain
 - Polygon
 
@@ -41,6 +43,10 @@ fake.litecoin_address()
 # 'LM3HgLcPemiBb5MJ3vqRRPrPqBdtf7pL'
 fake.ethereum_address()
 # '0x7ea8abae70ce7e9ce09155ee9169d5f18fc96b'
+fake.ripple_address()
+# 'rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh'
+fake.tron_address()
+# 'TNPeeaaFB7K9cmo4uQpcU32zGK8G1NYqeL'
 fake.binance_smart_chain_address()
 # '0xceeea432e1eb0fdcbd7ffbe2e7fefa6ccb78dd'
 fake.polygon_address()
