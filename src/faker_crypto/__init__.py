@@ -1,6 +1,3 @@
-__version__ = "0.2.2"
-
-
 from string import hexdigits
 
 from faker.providers import BaseProvider

@@ -1,50 +1,68 @@
-name: Test
+name: CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  UV_SYSTEM_PYTHON: 1
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
+      with:
+        enable-cache: true
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version-file: '.python-version'
+
+    - name: Install dependencies
+      run: uv sync --frozen --group dev
+
+    - name: Format check
+      run: uv run ruff format --check src tests
+
+    - name: Lint check
+      run: uv run ruff check src tests
+
   test:
+    name: Test (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10", "3.11"]
-
+        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13']
 
     steps:
-    - uses: actions/checkout@v3
-      with:
-          fetch-depth: 1
+    - uses: actions/checkout@v4
 
-    - name: Set up ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
+      with:
+        enable-cache: true
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Install Poetry
-      uses: snok/install-poetry@v1
-      with:
-        version: 1.5.1
-        virtualenvs-create: true
-        virtualenvs-in-project: true
-
-    - name: Load cached venv
-      id: cached-poetry-dependencies
-      uses: actions/cache@v3
-      with:
-        path: .venv
-        key: venv-${{ runner.os }}-py311-${{ hashFiles('**/poetry.lock') }}
-
     - name: Install dependencies
-      run: poetry install --no-interaction --no-root
+      run: uv sync --frozen --group dev
 
-    - name: iSort
-      run: poetry run isort --check-only .
+    - name: Run tests
+      run: uv run pytest
 
-    - name: Black Formatting
-      run: poetry run black --check .
-
-    - name: Flake8
-      run: poetry run flake8 .
-
-    - name: Test
-      run: poetry run pytest --cov -v
+    - name: Minimize uv cache
+      if: always()
+      run: uv cache prune --ci

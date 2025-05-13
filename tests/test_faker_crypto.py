@@ -1,10 +1,10 @@
 import pytest
-from faker_crypto import __version__
 
 
 @pytest.fixture
 def fake():
     from faker import Faker
+
     from faker_crypto import CryptoAddress
 
     Faker.seed(0)
@@ -12,10 +12,6 @@ def fake():
     fake.add_provider(CryptoAddress)
 
     return fake
-
-
-def test_version():
-    assert __version__ == "0.2.2"
 
 
 def test_random_bitcoin_address(fake):

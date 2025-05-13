@@ -1,7 +1,5 @@
 # faker-crypto
 
-__Version:__ 0.2.2
-
 faker-crypto is a Faker provider for Cryto Addreses.
 
 Following crypto addresses are supported:
@@ -46,10 +44,37 @@ fake.polygon_address()
 ```
 
 
-## Testing
+## Development
+
+This project uses [uv](https://github.com/astral-sh/uv) for dependency management.
+
+### Setup Development Environment
+
+```bash
+# Install project in development mode with all dependencies
+uv sync --frozen --dev
+
+# Or use just command
+just install
+```
+
+### Testing
 
 Run unit tests with code coverage with:
 
+```bash
+uv run pytest --cov -v
+
+# Or use just command
+just test
 ```
-pytest --cov -v 
+
+### Formatting and Linting
+
+```bash
+# Format code
+just format
+
+# Run linters
+just lint
 ```
