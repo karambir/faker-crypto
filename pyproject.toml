@@ -36,7 +36,6 @@ Issues = "https://github.com/karambir/faker-crypto/issues"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-
 [dependency-groups]
 dev = [
     "pytest>=7.2.1",

@@ -4,14 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       release_type:
-        description: 'Release Type'
+        description: "Release Type"
         required: true
         type: choice
         options:
           - patch
           - minor
           - major
-        default: 'patch'
+        default: "patch"
 
 permissions:
   contents: write
@@ -28,18 +28,18 @@ jobs:
           exit 1
 
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
           token: ${{ secrets.RELEASE_GITHUB_PAT }}
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version-file: '.python-version'
+          python-version-file: ".python-version"
 
       - name: Get current version
         id: current_version
