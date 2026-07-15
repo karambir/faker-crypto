@@ -44,9 +44,6 @@ dev = [
     "ruff~=0.15",
 ]
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/faker_crypto"]
-
 [tool.ruff]
 line-length = 100
 target-version = "py310"
