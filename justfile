@@ -28,6 +28,11 @@ test-cov:
 # Update dependencies using uv and regenerate lock file
 update:
     uv lock --upgrade
+    just install
+
+# Show outdated dependencies
+@outdated:
+    uv pip list --outdated
 
 # Run code quality tools
 lint:
