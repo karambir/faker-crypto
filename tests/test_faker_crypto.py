@@ -20,9 +20,9 @@ def test_random_bitcoin_address(fake):
         assert 26 <= len(address) <= 35
 
 
-def test_bench32_bitcoin_address(fake):
+def test_bech32_bitcoin_address(fake):
     for _ in range(100):
-        address = fake.bitcoin_address(include_bench32=True)
+        address = fake.bitcoin_address(include_bech32=True)
         assert 26 <= len(address) <= 37
 
 
@@ -31,19 +31,25 @@ def test_bitcoin_address_startwith(fake):
     assert address[0] in ["1", "3"]
 
 
-def test_bench32_bitcoin_address_startwith(fake):
+def test_bech32_bitcoin_address_startwith(fake):
     for _ in range(100):
-        address = fake.bitcoin_address(include_bench32=True)
+        address = fake.bitcoin_address(include_bech32=True)
         assert address[:3] == "bc1" or address[0] in ["1", "3"]
 
 
-def test_bench32_bitcoin_address_chars(fake):
+def test_bech32_bitcoin_address_chars(fake):
     bech32_chars = "qpzry9x8gf2tvdw0s3jn54khce6mua7l"
     for _ in range(200):
-        address = fake.bitcoin_address(include_bench32=True)
+        address = fake.bitcoin_address(include_bech32=True)
         if address.startswith("bc1"):
             for char in address[3:]:
                 assert char in bech32_chars
+
+
+def test_bench32_bitcoin_address_deprecated_alias(fake):
+    with pytest.warns(DeprecationWarning):
+        address = fake.bitcoin_address(include_bench32=True)
+    assert 26 <= len(address) <= 37
 
 
 def test_random_bitcoincash_address(fake):

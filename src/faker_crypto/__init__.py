@@ -1,3 +1,4 @@
+import warnings
 from string import hexdigits
 
 from faker.providers import BaseProvider
@@ -14,11 +15,21 @@ class CryptoAddress(BaseProvider):
         address += self.random_elements(elements=list(hexdigits[:16]), length=addr_length)
         return "".join(address).lower()
 
-    def bitcoin_address(self, include_bench32: bool = False) -> str:
+    def bitcoin_address(
+        self, include_bech32: bool = False, include_bench32: bool | None = None
+    ) -> str:
         # Bitcoin addresses start with '1' or '3' and are 25-34 characters long.
+        if include_bench32 is not None:
+            warnings.warn(
+                "include_bench32 is deprecated; use include_bech32",
+                DeprecationWarning,
+                stacklevel=2,
+            )
+            include_bech32 = include_bench32
+
         suffix_length = self.random_int(min=25, max=34)
         addr_prefix_space = ["1", "3"]
-        if include_bench32:
+        if include_bech32:
             addr_prefix_space += ["bc1"]
 
         addr_prefix = self.random_element(elements=addr_prefix_space)
