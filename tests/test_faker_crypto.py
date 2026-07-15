@@ -37,6 +37,15 @@ def test_bench32_bitcoin_address_startwith(fake):
         assert address[:3] == "bc1" or address[0] in ["1", "3"]
 
 
+def test_bench32_bitcoin_address_chars(fake):
+    bech32_chars = "qpzry9x8gf2tvdw0s3jn54khce6mua7l"
+    for _ in range(200):
+        address = fake.bitcoin_address(include_bench32=True)
+        if address.startswith("bc1"):
+            for char in address[3:]:
+                assert char in bech32_chars
+
+
 def test_random_bitcoincash_address(fake):
     for _ in range(100):
         address = fake.bitcoincash_address()

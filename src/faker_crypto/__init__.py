@@ -11,7 +11,7 @@ class CryptoAddress(BaseProvider):
         addr_length = 40
         address = ["0", "x"]
 
-        address += self.random_elements(elements=list(hexdigits), length=addr_length)
+        address += self.random_elements(elements=list(hexdigits[:16]), length=addr_length)
         return "".join(address).lower()
 
     def bitcoin_address(self, include_bench32: bool = False) -> str:
@@ -22,7 +22,8 @@ class CryptoAddress(BaseProvider):
             addr_prefix_space += ["bc1"]
 
         addr_prefix = self.random_element(elements=addr_prefix_space)
-        addr_suffix = "".join(self.random_elements(list(self.coin_letters_integers), suffix_length))
+        char_pool = self.bech32_chars if addr_prefix == "bc1" else self.coin_letters_integers
+        addr_suffix = "".join(self.random_elements(list(char_pool), suffix_length))
 
         return addr_prefix + addr_suffix
 
